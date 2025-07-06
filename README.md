@@ -61,7 +61,7 @@ SlotBox SDK is a revolutionary, dynamic SDK for building casino games with unpre
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/slotbox-sdk.git
+git clone https://github.com/Bengi-Bankz/slotbox-sdk.git
 cd slotbox-sdk
 
 # Install dependencies
@@ -250,6 +250,73 @@ export default defineConfig({
 - macOS 10.15+
 - Linux (Ubuntu 20.04+)
 
+## 💰 Pricing & Commercial Use
+
+### 🆓 **Community Edition (Free)**
+- Basic slot machine functionality
+- Up to 3 reels, 3 rows
+- Standard symbols and animations
+- Local development only
+- Community support
+
+### 🚀 **Professional Edition ($29/month)**
+- Unlimited reels and rows
+- Custom symbol upload
+- Advanced animations and effects
+- Screenshot & recording tools
+- Priority support
+- Commercial license included
+
+### 🏢 **Enterprise Edition ($99/month)**
+- Everything in Professional
+- AI-powered suggestions
+- Stake Engine integration
+- White-label options
+- Custom branding
+- Dedicated support
+- Priority revenue sharing (reduced rates)
+
+### 📊 **Revenue Share Tiers**
+
+#### 🌟 **Starter Games** (First $1,000/month)
+- **SlotBox Share**: 15%
+- **Developer Share**: 85%
+- **Benefits**: Standard support, basic analytics
+
+#### 🚀 **Growing Games** ($1,000 - $10,000/month)
+- **SlotBox Share**: 10%
+- **Developer Share**: 90%
+- **Benefits**: Priority support, advanced analytics, marketing assistance
+
+#### 💎 **Successful Games** ($10,000+/month)
+- **SlotBox Share**: 7%
+- **Developer Share**: 93%
+- **Benefits**: Dedicated account manager, custom features, co-marketing
+
+#### 🏆 **Enterprise Partners** (Custom)
+- **SlotBox Share**: 5% (negotiable)
+- **Developer Share**: 95%
+- **Benefits**: White-label options, custom development, direct partnership
+
+> **The more successful your games become, the less we take. We're invested in your long-term success!** 💪
+
+### 💎 **Revenue Share Program**
+- **Free to Use** - No upfront costs
+- **We Take 10%** - Only when your game makes money
+- **Built-in Analytics** - Real-time revenue tracking
+- **Monthly Payouts** - Automated payments to developers
+- **Stake Engine Integration** - Direct deployment with revenue tracking
+- **Performance Bonuses** - Reduced rates for high-performing games
+
+> **Why Revenue Share?** We succeed when you succeed. Build amazing games, we handle the tech and take a small cut of the profits. It's a win-win! 🚀
+
+### 🎯 **Custom Development**
+- Bespoke game creation: $500-2000
+- Integration services: $200-500
+- Training and consulting: $100/hour
+
+> **Ready to upgrade?** [Contact us](mailto:sales@slotbox-sdk.com) or visit our [pricing page](https://slotbox-sdk.com/pricing)
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
@@ -257,7 +324,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 ### Development Setup
 ```bash
 # Fork the repository
-git fork https://github.com/your-username/slotbox-sdk.git
+git fork https://github.com/Bengi-Bankz/slotbox-sdk.git
 
 # Create a feature branch
 git checkout -b feature/amazing-new-feature
@@ -324,7 +391,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Documentation**: [docs.slotbox-sdk.com](https://docs.slotbox-sdk.com)
 - **Community**: [Discord Server](https://discord.gg/slotbox-sdk)
-- **Issues**: [GitHub Issues](https://github.com/your-username/slotbox-sdk/issues)
+- **Issues**: [GitHub Issues](https://github.com/Bengi-Bankz/slotbox-sdk/issues)
 - **Email**: support@slotbox-sdk.com
 
 ---
@@ -333,3 +400,58 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   <p><strong>Made with ❤️ by the SlotBox SDK Team</strong></p>
   <p>🎰 <em>The Future of iGaming Starts Here</em> 🎰</p>
 </div>
+
+## 🤝 **Strategic Partnerships**
+
+### 🎰 **Stake Engine Partnership**
+SlotBox SDK is designed to work seamlessly with Stake's gaming platform through our revolutionary **three-way revenue sharing model**:
+
+#### **How It Works:**
+1. **Developers** create games using SlotBox SDK (free)
+2. **SlotBox** provides tools, support, and quality assurance
+3. **Stake** hosts and operates the games on their platform
+4. **Revenue flows** to all three parties based on game performance
+
+#### **Revenue Distribution:**
+- **Developer**: 85-93% (based on performance tiers)
+- **SlotBox**: 5-15% (decreasing as games grow)
+- **Stake**: Standard platform fees (negotiated separately)
+
+#### **Benefits for Stake:**
+- **Curated Content**: Pre-tested, high-quality games
+- **Reduced Development Costs**: No upfront payments to developers
+- **Innovation Pipeline**: Access to cutting-edge game mechanics
+- **Risk Mitigation**: Only successful games generate costs
+- **Market Expansion**: Unique games attract new players
+
+#### **Quality Assurance:**
+- **Technical Standards**: All games tested for performance and compatibility
+- **Mathematical Validation**: RTP and volatility verified using Rust/Cargo
+- **Regulatory Compliance**: Games built to meet licensing requirements
+- **Performance Monitoring**: Real-time analytics and optimization
+
+> **Interested in Partnership?** Contact us at [partnerships@slotbox-sdk.com](mailto:partnerships@slotbox-sdk.com) to discuss integration opportunities.
+
+### 🌟 **Multi-Platform Strategy**
+
+While our primary focus is Stake integration, SlotBox SDK supports multiple deployment targets:
+
+#### **Gaming Platforms:**
+- **Stake**: Primary partner with deep integration
+- **Roobet**: Secondary target for game deployment
+- **DraftKings**: Exploring sports betting integration
+- **FanDuel**: Potential casino game partnership
+
+#### **Independent Deployments:**
+- **White-label Casinos**: Direct B2B sales
+- **Mobile Apps**: iOS/Android game exports
+- **Web Platforms**: Standalone casino websites
+- **Blockchain Gaming**: Crypto-powered slot games
+
+#### **Revenue Optimization:**
+- **A/B Testing**: Built-in game performance optimization
+- **Player Analytics**: Deep insights into player behavior
+- **Dynamic RTP**: Adjust payout rates based on performance
+- **Seasonal Campaigns**: Holiday and event-themed games
+
+> **The goal is to make every game a success story, benefiting developers, platforms, and players alike.** 🎯
