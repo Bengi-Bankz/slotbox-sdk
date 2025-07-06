@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="stylesheet" href="/style.css">
+    <title>PixiJS - Template</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="pixi-container"></div>
+    </div>
+
+    <!-- Comprehensive Device Testing Sandbox -->
+    <div id="deviceTestPanel"
+        style="position: fixed; top: 10px; right: 10px; z-index: 1000; background: rgba(0,0,0,0.9); padding: 15px; border-radius: 8px; color: white; font-family: Arial, sans-serif; max-width: 250px;">
+        <div
+            style="margin-bottom: 10px; font-weight: bold; text-align: center; border-bottom: 1px solid #ccc; padding-bottom: 5px;">
+            📱 Device Testing Sandbox
+        </div>
+
+        <!-- Small Mobile -->
+        <div style="margin-bottom: 8px;">
+            <div style="font-size: 11px; color: #aaa; margin-bottom: 3px;">📱 Small Mobile (320px)</div>
+            <button onclick="setDevice(320, 568)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">Portrait</button>
+            <button onclick="setDevice(568, 320)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">Landscape</button>
+        </div>
+
+        <!-- Medium Mobile -->
+        <div style="margin-bottom: 8px;">
+            <div style="font-size: 11px; color: #aaa; margin-bottom: 3px;">📱 Medium Mobile (375px)</div>
+            <button onclick="setDevice(375, 667)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">Portrait</button>
+            <button onclick="setDevice(667, 375)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">Landscape</button>
+        </div>
+
+        <!-- Large Mobile -->
+        <div style="margin-bottom: 8px;">
+            <div style="font-size: 11px; color: #aaa; margin-bottom: 3px;">📱 Large Mobile (414px)</div>
+            <button onclick="setDevice(414, 896)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">Portrait</button>
+            <button onclick="setDevice(896, 414)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">Landscape</button>
+        </div>
+
+        <!-- Tablet -->
+        <div style="margin-bottom: 8px;">
+            <div style="font-size: 11px; color: #aaa; margin-bottom: 3px;">📟 Tablet (768px)</div>
+            <button onclick="setDevice(768, 1024)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">Portrait</button>
+            <button onclick="setDevice(1024, 768)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">Landscape</button>
+        </div>
+
+        <!-- Desktop -->
+        <div style="margin-bottom: 8px;">
+            <div style="font-size: 11px; color: #aaa; margin-bottom: 3px;">🖥️ Desktop</div>
+            <button onclick="setDevice(1366, 768)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">1366x768</button>
+            <button onclick="setDevice(1920, 1080)"
+                style="margin: 1px; padding: 3px 6px; font-size: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 3px; cursor: pointer;">1920x1080</button>
+        </div>
+
+        <!-- Reset & Toggle -->
+        <div style="margin-top: 10px; border-top: 1px solid #555; padding-top: 8px;">
+            <button onclick="testModal();"
+                style="margin: 1px; padding: 4px 8px; font-size: 10px; background: #006666; color: white; border: 1px solid #008888; border-radius: 3px; cursor: pointer; width: 100%;">📸
+                Capture Screenshot</button>
+            <button onclick="testModal()"
+                style="margin: 1px; padding: 4px 8px; font-size: 10px; background: #666600; color: white; border: 1px solid #888800; border-radius: 3px; cursor: pointer; width: 100%; margin-top: 2px;">🧪
+                Test Modal</button>
+            <button onclick="resetToFullscreen()"
+                style="margin: 1px; padding: 4px 8px; font-size: 10px; background: #006600; color: white; border: 1px solid #008800; border-radius: 3px; cursor: pointer; width: 100%; margin-top: 2px;">Reset
+                to Fullscreen</button>
+            <button onclick="togglePanel()"
+                style="margin: 1px; padding: 4px 8px; font-size: 10px; background: #660000; color: white; border: 1px solid #880000; border-radius: 3px; cursor: pointer; width: 100%; margin-top: 2px;">Hide
+                Panel</button>
+        </div>
+
+        <!-- Current dimensions display -->
+        <div id="currentDimensions"
+            style="margin-top: 8px; font-size: 10px; color: #ccc; text-align: center; border-top: 1px solid #555; padding-top: 5px;">
+            Current: <span id="dimensionText">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Screenshot Annotation Modal -->
+    <div id="screenshotModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 20000; overflow: auto;">
+        <div
+            style="position: relative; width: 98%; max-width: 1600px; margin: 1% auto; background: #1a1a1a; border-radius: 10px; padding: 25px; color: white; border: 2px solid #333; min-height: 90vh;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #555; padding-bottom: 15px;">
+                <h2 style="margin: 0; color: #00ff99; font-size: 24px;">📸 Screenshot Captured</h2>
+                <button onclick="closeScreenshotModal()"
+                    style="background: #cc0000; color: white; border: none; border-radius: 8px; padding: 15px 20px; cursor: pointer; font-size: 18px; font-weight: bold;">✕
+                    Close</button>
+            </div>
+
+            <div style="display: flex; gap: 25px; align-items: flex-start;">
+                <!-- Canvas for annotation -->
+                <div style="flex: 1; min-width: 0;">
+                    <div
+                        style="position: relative; border: 3px solid #555; border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 15px;">
+                        <canvas id="screenshotCanvas" style="display: block; max-width: 100%; height: auto;"></canvas>
+                        <canvas id="annotationCanvas"
+                            style="position: absolute; top: 0; left: 0; cursor: crosshair;"></canvas>
+                    </div>
+
+                    <!-- Drawing tools -->
+                    <div style="margin-top: 15px; padding: 20px; background: #2a2a2a; border-radius: 8px;">
+                        <div style="margin-bottom: 15px; font-size: 18px; color: #00ff99; font-weight: bold;">🎨
+                            Annotation Tools</div>
+                        <div
+                            style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 15px;">
+                            <button onclick="setDrawMode('pen')" id="penTool"
+                                style="padding: 12px 16px; font-size: 14px; background: #0066cc; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">✏️
+                                Pen</button>
+                            <button onclick="setDrawMode('arrow')" id="arrowTool"
+                                style="padding: 12px 16px; font-size: 14px; background: #333; color: white; border: 2px solid #555; border-radius: 6px; cursor: pointer; font-weight: bold;">➡️
+                                Arrow</button>
+                            <button onclick="setDrawMode('rect')" id="rectTool"
+                                style="padding: 12px 16px; font-size: 14px; background: #333; color: white; border: 2px solid #555; border-radius: 6px; cursor: pointer; font-weight: bold;">⬜
+                                Box</button>
+                            <button onclick="setDrawMode('text')" id="textTool"
+                                style="padding: 12px 16px; font-size: 14px; background: #333; color: white; border: 2px solid #555; border-radius: 6px; cursor: pointer; font-weight: bold;">📝
+                                Text</button>
+                            <button onclick="setDrawMode('flag')" id="flagTool"
+                                style="padding: 12px 16px; font-size: 14px; background: #333; color: white; border: 2px solid #555; border-radius: 6px; cursor: pointer; font-weight: bold;">🚩
+                                Flag</button>
+                            <button onclick="setDrawMode('x')" id="xTool"
+                                style="padding: 12px 16px; font-size: 14px; background: #333; color: white; border: 2px solid #555; border-radius: 6px; cursor: pointer; font-weight: bold;">❌
+                                X</button>
+                            <button onclick="setDrawMode('check')" id="checkTool"
+                                style="padding: 12px 16px; font-size: 14px; background: #333; color: white; border: 2px solid #555; border-radius: 6px; cursor: pointer; font-weight: bold;">✅
+                                Check</button>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                            <select id="colorPicker" onchange="changeDrawColor()"
+                                style="padding: 8px 12px; background: #444; color: white; border: 2px solid #666; border-radius: 6px; font-size: 14px; min-width: 120px;">
+                                <option value="#ffffff" selected>⚪ White</option>
+                                <option value="#ff0000">🔴 Red</option>
+                                <option value="#00ff00">🟢 Green</option>
+                                <option value="#0099ff">🔵 Blue</option>
+                                <option value="#ffff00">🟡 Yellow</option>
+                                <option value="#ff00ff">🟣 Purple</option>
+                                <option value="#ffa500">🟠 Orange</option>
+                                <option value="#000000">⚫ Black</option>
+                            </select>
+
+                            <button onclick="clearAnnotations()"
+                                style="padding: 12px 16px; font-size: 14px; background: #cc6600; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">🗑️
+                                Clear</button>
+                            <button onclick="undoAnnotation()"
+                                style="padding: 12px 16px; font-size: 14px; background: #666; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">↶
+                                Undo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info panel -->
+                <div style="width: 350px; background: #2a2a2a; padding: 20px; border-radius: 8px; min-height: 500px;">
+                    <h3 style="margin: 0 0 15px 0; color: #00ff99; font-size: 20px;">📋 Screenshot Info</h3>
+                    <div id="screenshotInfo"
+                        style="font-size: 14px; line-height: 1.6; color: #ccc; margin-bottom: 20px;"></div>
+
+                    <h3 style="margin: 20px 0 12px 0; color: #00ff99; font-size: 20px;">📝 Add Notes</h3>
+                    <textarea id="screenshotNotes" placeholder="Describe the issue or add notes..."
+                        style="width: 100%; height: 120px; background: #444; color: white; border: 2px solid #666; border-radius: 6px; padding: 12px; font-size: 14px; resize: vertical; box-sizing: border-box;"></textarea>
+
+                    <h3 style="margin: 20px 0 12px 0; color: #00ff99; font-size: 20px;">💾 Export Options</h3>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button onclick="copyToClipboard()"
+                            style="padding: 12px; background: #660066; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: bold;">📋
+                            Copy to Clipboard</button>
+                        <button onclick="generateReport()"
+                            style="padding: 12px; background: #666600; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: bold;">📄
+                            Generate Report</button>
+                    </div>
+
+                    <div
+                        style="margin-top: 20px; padding: 15px; background: #444; border-radius: 6px; font-size: 13px; color: #aaa; line-height: 1.4;">
+                        💡 <strong>Tip:</strong> Use annotation tools to highlight issues, then download or copy to
+                        share with developers.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let panelVisible = true;
+
+            function setDevice(width, height) {
+                const app = document.getElementById('app');
+                const body = document.body;
+
+                // Set fixed dimensions
+                body.style.width = width + 'px';
+                body.style.height = height + 'px';
+                body.style.overflow = 'hidden';
+                body.style.minWidth = width + 'px';
+                body.style.minHeight = height + 'px';
+                body.style.maxWidth = width + 'px';
+                body.style.maxHeight = height + 'px';
+
+                app.style.width = width + 'px';
+                app.style.height = height + 'px';
+                app.style.minWidth = width + 'px';
+                app.style.minHeight = height + 'px';
+                app.style.maxWidth = width + 'px';
+                app.style.maxHeight = height + 'px';
+
+                // Force the pixi container to match
+                const pixiContainer = document.getElementById('pixi-container');
+                if (pixiContainer) {
+                    pixiContainer.style.width = width + 'px';
+                    pixiContainer.style.height = height + 'px';
+                }
+
+                // Update dimension display
+                updateDimensionDisplay(width, height);
+
+                // Trigger resize event for PixiJS multiple times to ensure it takes effect
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 50);
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 150);
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 300);
+
+                console.log(`🔧 Device set to: ${width}x${height}`);
+                console.log(`Actual viewport: ${window.innerWidth}x${window.innerHeight}`);
+            }
+
+            function resetToFullscreen() {
+                const app = document.getElementById('app');
+                const body = document.body;
+
+                // Reset to fullscreen
+                body.style.width = '100vw';
+                body.style.height = '100vh';
+                body.style.overflow = '';
+                body.style.minWidth = '';
+                body.style.minHeight = '';
+                body.style.maxWidth = '';
+                body.style.maxHeight = '';
+
+                app.style.width = '100%';
+                app.style.height = '100%';
+                app.style.minWidth = '';
+                app.style.minHeight = '';
+                app.style.maxWidth = '';
+                app.style.maxHeight = '';
+
+                // Reset the pixi container
+                const pixiContainer = document.getElementById('pixi-container');
+                if (pixiContainer) {
+                    pixiContainer.style.width = '100%';
+                    pixiContainer.style.height = '100%';
+                }
+
+                // Update dimension display
+                setTimeout(() => {
+                    updateDimensionDisplay(window.innerWidth, window.innerHeight);
+                }, 100);
+
+                // Trigger resize event multiple times
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 50);
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 150);
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 300);
+
+                console.log('🔧 Reset to fullscreen');
+                console.log(`Actual viewport: ${window.innerWidth}x${window.innerHeight}`);
+            }
+
+            function togglePanel() {
+                const panel = document.getElementById('deviceTestPanel');
+                if (panelVisible) {
+                    panel.style.display = 'none';
+                    panelVisible = false;
+
+                    // Create a small show button
+                    const showBtn = document.createElement('button');
+                    showBtn.id = 'showPanelBtn';
+                    showBtn.innerHTML = '📱';
+                    showBtn.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 1001; background: rgba(0,0,0,0.8); color: white; border: 1px solid #555; border-radius: 5px; padding: 8px; cursor: pointer; font-size: 16px;';
+                    showBtn.onclick = () => {
+                        panel.style.display = 'block';
+                        panelVisible = true;
+                        document.body.removeChild(showBtn);
+                    };
+                    document.body.appendChild(showBtn);
+                }
+            }
+
+            function updateDimensionDisplay(width, height) {
+                const dimensionText = document.getElementById('dimensionText');
+                if (dimensionText) {
+                    const deviceType = getDeviceType(width, height);
+                    const actualWidth = window.innerWidth;
+                    const actualHeight = window.innerHeight;
+                    const isAccurate = (actualWidth === width && actualHeight === height);
+                    const accuracySymbol = isAccurate ? '✅' : '⚠️';
+
+                    dimensionText.textContent = `${width}x${height} (${deviceType}) ${accuracySymbol}`;
+
+                    if (!isAccurate) {
+                        console.warn(`⚠️ Dimension mismatch! Expected: ${width}x${height}, Actual: ${actualWidth}x${actualHeight}`);
+                    }
+                }
+            }
+
+            // Add global function to verify current dimensions
+            window.verifyDimensions = function () {
+                console.log('=== Dimension Verification ===');
+                console.log('Window inner dimensions:', window.innerWidth, 'x', window.innerHeight);
+                console.log('Document body dimensions:', document.body.offsetWidth, 'x', document.body.offsetHeight);
+                console.log('App element dimensions:', document.getElementById('app').offsetWidth, 'x', document.getElementById('app').offsetHeight);
+
+                if (window.pixiApp) {
+                    console.log('PixiJS screen dimensions:', window.pixiApp.screen.width, 'x', window.pixiApp.screen.height);
+                    console.log('PixiJS canvas dimensions:', window.pixiApp.canvas.width, 'x', window.pixiApp.canvas.height);
+                }
+
+                return {
+                    window: { width: window.innerWidth, height: window.innerHeight },
+                    body: { width: document.body.offsetWidth, height: document.body.offsetHeight },
+                    app: { width: document.getElementById('app').offsetWidth, height: document.getElementById('app').offsetHeight },
+                    pixi: window.pixiApp ? {
+                        screen: { width: window.pixiApp.screen.width, height: window.pixiApp.screen.height },
+                        canvas: { width: window.pixiApp.canvas.width, height: window.pixiApp.canvas.height }
+                    } : null
+                };
+            };
+
+            function getDeviceType(width, height) {
+                const minDim = Math.min(width, height);
+                const isLandscape = width > height;
+
+                if (minDim <= 320) return isLandscape ? 'Small Mobile L' : 'Small Mobile P';
+                if (minDim <= 375) return isLandscape ? 'Med Mobile L' : 'Med Mobile P';
+                if (minDim <= 414) return isLandscape ? 'Large Mobile L' : 'Large Mobile P';
+                if (minDim <= 768) return isLandscape ? 'Tablet L' : 'Tablet P';
+                return 'Desktop';
+            }
+
+            // Initialize dimension display
+            window.addEventListener('load', () => {
+                updateDimensionDisplay(window.innerWidth, window.innerHeight);
+            });
+
+            // Update dimensions on window resize
+            window.addEventListener('resize', () => {
+                setTimeout(() => {
+                    updateDimensionDisplay(window.innerWidth, window.innerHeight);
+                }, 100);
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'h') {
+                    e.preventDefault();
+                    togglePanel();
+                }
+                if (e.ctrlKey && e.key === 'r') {
+                    e.preventDefault();
+                    resetToFullscreen();
+                }
+                if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+                    e.preventDefault();
+                    captureScreenshot();
+                }
+            });
+
+            // Screenshot and annotation functionality
+            let drawMode = 'pen';
+            let drawColor = '#ffffff'; // Start with white
+            let isDrawing = false;
+            let startX, startY;
+            let annotations = [];
+            let currentPath = [];
+
+            async function captureScreenshot() {
+                console.log('📸 SCREENSHOT BUTTON CLICKED - Starting capture...');
+                
+                // Simple approach - just create a canvas and open the modal
+                const screenshotCanvas = document.createElement('canvas');
+                screenshotCanvas.width = window.innerWidth;
+                screenshotCanvas.height = window.innerHeight;
+                const ctx = screenshotCanvas.getContext('2d');
+                
+                // Fill with background
+                ctx.fillStyle = '#1E1E1E';
+                ctx.fillRect(0, 0, screenshotCanvas.width, screenshotCanvas.height);
+                
+                // Add some text
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '24px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('Screenshot Captured', screenshotCanvas.width / 2, screenshotCanvas.height / 2);
+                
+                console.log('📸 Canvas created, calling setupScreenshotModal...');
+                setupScreenshotModal(screenshotCanvas);
+                console.log('📸 setupScreenshotModal called - modal should be opening now');
+            }
+
+            // Debug function to check modal setup
+            function debugModal() {
+                const modal = document.getElementById('screenshotModal');
+                const canvas = document.getElementById('screenshotCanvas');
+                const annotationCanvas = document.getElementById('annotationCanvas');
+                
+                console.log('Modal exists:', !!modal);
+                console.log('Screenshot canvas exists:', !!canvas);
+                console.log('Annotation canvas exists:', !!annotationCanvas);
+                
+                if (modal) {
+                    console.log('Modal display style:', modal.style.display);
+                }
+            }
+
+            function setupScreenshotModal(screenshotCanvas) {
+                console.log('🔧 MODAL SETUP STARTING...');
+                
+                const modal = document.getElementById('screenshotModal');
+                console.log('Modal element:', modal);
+                
+                if (!modal) {
+                    console.error('❌ MODAL NOT FOUND!');
+                    alert('Modal not found!');
+                    return;
+                }
+
+                console.log('🔧 Modal found, setting up...');
+                
+                const canvas = document.getElementById('screenshotCanvas');
+                const annotationCanvas = document.getElementById('annotationCanvas');
+                const info = document.getElementById('screenshotInfo');
+
+                if (!canvas || !annotationCanvas) {
+                    console.error('❌ Canvas elements missing!');
+                    return;
+                }
+
+                // Hide device panel
+                const devicePanel = document.getElementById('deviceTestPanel');
+                if (devicePanel) {
+                    devicePanel.style.display = 'none';
+                    console.log('✅ Device panel hidden');
+                }
+
+                // Setup canvases
+                canvas.width = screenshotCanvas.width;
+                canvas.height = screenshotCanvas.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(screenshotCanvas, 0, 0);
+                console.log('✅ Screenshot canvas setup');
+
+                annotationCanvas.width = screenshotCanvas.width;
+                annotationCanvas.height = screenshotCanvas.height;
+                console.log('✅ Annotation canvas setup');
+
+                // Scale canvases
+                const maxWidth = 1200;
+                const maxHeight = 800;
+                const scale = Math.min(1, maxWidth / screenshotCanvas.width, maxHeight / screenshotCanvas.height);
+                canvas.style.width = (screenshotCanvas.width * scale) + 'px';
+                canvas.style.height = (screenshotCanvas.height * scale) + 'px';
+                annotationCanvas.style.width = (screenshotCanvas.width * scale) + 'px';
+                annotationCanvas.style.height = (screenshotCanvas.height * scale) + 'px';
+                console.log('✅ Canvas scaling applied');
+
+                // Update info
+                if (info) {
+                    const deviceInfo = getDeviceType(screenshotCanvas.width, screenshotCanvas.height);
+                    const timestamp = new Date().toLocaleString();
+                    info.innerHTML = `
+                        <div><strong>Resolution:</strong> ${screenshotCanvas.width}x${screenshotCanvas.height}</div>
+                        <div><strong>Device:</strong> ${deviceInfo}</div>
+                        <div><strong>Captured:</strong> ${timestamp}</div>
+                    `;
+                    console.log('✅ Info panel updated');
+                }
+
+                // Setup annotation events
+                setupAnnotationEvents();
+                console.log('✅ Annotation events setup');
+
+                // Clear annotations
+                annotations = [];
+                clearAnnotations();
+                console.log('✅ Annotations cleared');
+
+                // SHOW THE MODAL
+                console.log('🔧 SHOWING MODAL NOW...');
+                modal.style.display = 'block';
+                console.log('✅ MODAL SHOULD BE VISIBLE NOW - display:', modal.style.display);
+                
+                // Force check
+                setTimeout(() => {
+                    console.log('🔍 Modal check after 500ms - display:', modal.style.display);
+                    if (modal.style.display !== 'block') {
+                        console.error('❌ MODAL STILL NOT VISIBLE!');
+                        modal.style.display = 'block';
+                    } else {
+                        console.log('✅ MODAL IS VISIBLE!');
+                    }
+                }, 500);
+            }
+
+            function setupAnnotationEvents() {
+                const canvas = document.getElementById('annotationCanvas');
+
+                // Remove previous event listeners
+                canvas.onmousedown = null;
+                canvas.onmousemove = null;
+                canvas.onmouseup = null;
+
+                let isDrawing = false;
+                let startX, startY;
+                let currentPath = [];
+
+                // Get canvas coordinates properly
+                function getCanvasCoordinates(e) {
+                    const rect = canvas.getBoundingClientRect();
+                    const scaleX = canvas.width / rect.width;
+                    const scaleY = canvas.height / rect.height;
+
+                    return {
+                        x: (e.clientX - rect.left) * scaleX,
+                        y: (e.clientY - rect.top) * scaleY
+                    };
+                }
+
+                canvas.onmousedown = (e) => {
+                    isDrawing = true;
+                    const coords = getCanvasCoordinates(e);
+                    startX = coords.x;
+                    startY = coords.y;
+
+                    if (drawMode === 'pen') {
+                        currentPath = [{ x: startX, y: startY }];
+                    } else if (drawMode === 'text') {
+                        const text = prompt('Enter text:');
+                        if (text) {
+                            annotations.push({
+                                type: 'text',
+                                x: startX,
+                                y: startY,
+                                text: text,
+                                color: drawColor
+                            });
+                            redrawAnnotations();
+                        }
+                        isDrawing = false;
+                    } else if (drawMode === 'flag') {
+                        annotations.push({
+                            type: 'flag',
+                            x: startX,
+                            y: startY,
+                            color: drawColor
+                        });
+                        redrawAnnotations();
+                        isDrawing = false;
+                    } else if (drawMode === 'x') {
+                        annotations.push({
+                            type: 'x',
+                            x: startX,
+                            y: startY,
+                            color: drawColor
+                        });
+                        redrawAnnotations();
+                        isDrawing = false;
+                    } else if (drawMode === 'check') {
+                        annotations.push({
+                            type: 'check',
+                            x: startX,
+                            y: startY,
+                            color: drawColor
+                        });
+                        redrawAnnotations();
+                        isDrawing = false;
+                    }
+                };
+
+                canvas.onmousemove = (e) => {
+                    if (!isDrawing) return;
+
+                    const coords = getCanvasCoordinates(e);
+                    const ctx = canvas.getContext('2d');
+
+                    if (drawMode === 'pen') {
+                        currentPath.push({ x: coords.x, y: coords.y });
+
+                        // Draw current stroke
+                        ctx.strokeStyle = drawColor;
+                        ctx.lineWidth = 8; // Even bolder pen
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+
+                        ctx.beginPath();
+                        ctx.moveTo(currentPath[currentPath.length - 2].x, currentPath[currentPath.length - 2].y);
+                        ctx.lineTo(coords.x, coords.y);
+                        ctx.stroke();
+                    } else if (drawMode === 'arrow' || drawMode === 'rect') {
+                        // Clear and redraw all annotations plus preview
+                        redrawAnnotations();
+
+                        ctx.strokeStyle = drawColor;
+                        ctx.lineWidth = 8; // Even bolder preview
+                        ctx.setLineDash([5, 5]); // Dashed line for preview
+
+                        if (drawMode === 'arrow') {
+                            drawArrowPreview(ctx, startX, startY, coords.x, coords.y);
+                        } else if (drawMode === 'rect') {
+                            ctx.strokeRect(startX, startY, coords.x - startX, coords.y - startY);
+                        }
+
+                        ctx.setLineDash([]); // Reset dash
+                    }
+                };
+
+                canvas.onmouseup = (e) => {
+                    if (!isDrawing) return;
+                    isDrawing = false;
+
+                    const coords = getCanvasCoordinates(e);
+
+                    if (drawMode === 'pen') {
+                        annotations.push({
+                            type: 'pen',
+                            path: currentPath,
+                            color: drawColor
+                        });
+                    } else if (drawMode === 'arrow') {
+                        annotations.push({
+                            type: 'arrow',
+                            start: { x: startX, y: startY },
+                            end: { x: coords.x, y: coords.y },
+                            color: drawColor
+                        });
+                    } else if (drawMode === 'rect') {
+                        annotations.push({
+                            type: 'rect',
+                            start: { x: startX, y: startY },
+                            end: { x: coords.x, y: coords.y },
+                            color: drawColor
+                        });
+                    }
+
+                    redrawAnnotations();
+                };
+            }
+
+            function drawArrowPreview(ctx, x1, y1, x2, y2) {
+                ctx.lineWidth = 8; // Even bolder preview
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+
+                // Draw arrow line
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+
+                // Draw arrow head
+                const headLength = 25; // Larger preview arrowhead
+                const angle = Math.atan2(y2 - y1, x2 - x1);
+
+                ctx.beginPath();
+                ctx.moveTo(x2, y2);
+                ctx.lineTo(x2 - headLength * Math.cos(angle - Math.PI / 6), y2 - headLength * Math.sin(angle - Math.PI / 6));
+                ctx.moveTo(x2, y2);
+                ctx.lineTo(x2 - headLength * Math.cos(angle + Math.PI / 6), y2 - headLength * Math.sin(angle + Math.PI / 6));
+                ctx.stroke();
+            }
+
+            function setDrawMode(mode) {
+                drawMode = mode;
+
+                // Update button styles
+                document.querySelectorAll('[id$="Tool"]').forEach(btn => {
+                    btn.style.background = '#333';
+                    btn.style.border = '1px solid #555';
+                });
+
+                const activeBtn = document.getElementById(mode + 'Tool');
+                if (activeBtn) {
+                    activeBtn.style.background = '#0066cc';
+                    activeBtn.style.border = '1px solid #0088ff';
+                }
+            }
+
+            function changeDrawColor() {
+                drawColor = document.getElementById('colorPicker').value;
+            }
+
+            function clearAnnotations() {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                annotations = [];
+            }
+
+            function undoAnnotation() {
+                annotations.pop();
+                redrawAnnotations();
+            }
+
+            function redrawAnnotations() {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                annotations.forEach(annotation => {
+                    ctx.strokeStyle = annotation.color;
+                    ctx.fillStyle = annotation.color;
+                    ctx.lineWidth = 8; // Bolder for all annotations
+
+                    if (annotation.type === 'pen') {
+                        drawPenStroke(annotation.path);
+                    } else if (annotation.type === 'arrow') {
+                        drawArrow(annotation.start, annotation.end);
+                    } else if (annotation.type === 'rect') {
+                        drawRect(annotation.start, annotation.end);
+                    } else if (annotation.type === 'text') {
+                        drawText(annotation.x, annotation.y, annotation.text);
+                    } else if (annotation.type === 'flag') {
+                        drawFlag(annotation.x, annotation.y);
+                    } else if (annotation.type === 'x') {
+                        drawX(annotation.x, annotation.y);
+                    } else if (annotation.type === 'check') {
+                        drawCheck(annotation.x, annotation.y);
+                    }
+                });
+            }
+
+            function drawPenStroke(path) {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+
+                if (path.length < 2) return;
+
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.lineWidth = 8; // Even bolder pen
+
+                ctx.beginPath();
+                ctx.moveTo(path[0].x, path[0].y);
+                for (let i = 1; i < path.length; i++) {
+                    ctx.lineTo(path[i].x, path[i].y);
+                }
+                ctx.stroke();
+            }
+
+            function drawArrow(start, end) {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+
+                ctx.lineWidth = 8; // Even bolder arrow
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+
+                // Draw line
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+
+                // Draw arrow head
+                const headLength = 25; // Larger arrowhead
+                const angle = Math.atan2(end.y - start.y, end.x - start.x);
+
+                ctx.beginPath();
+                ctx.moveTo(end.x, end.y);
+                ctx.lineTo(end.x - headLength * Math.cos(angle - Math.PI / 6), end.y - headLength * Math.sin(angle - Math.PI / 6));
+                ctx.moveTo(end.x, end.y);
+                ctx.lineTo(end.x - headLength * Math.cos(angle + Math.PI / 6), end.y - headLength * Math.sin(angle + Math.PI / 6));
+                ctx.stroke();
+            }
+
+            function drawRect(start, end) {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+
+                ctx.lineWidth = 8; // Even bolder rectangle
+                ctx.strokeRect(start.x, start.y, end.x - start.x, end.y - start.y);
+            }
+
+            function drawText(x, y, text) {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+
+                ctx.font = 'bold 24px Arial'; // Larger text
+                ctx.fillText(text, x, y);
+            }
+
+            function drawFlag(x, y) {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+
+                const size = 35; // Larger flag
+
+                // Draw flag pole
+                ctx.lineWidth = 6;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x, y - size * 1.5);
+                ctx.stroke();
+
+                // Draw flag
+                ctx.beginPath();
+                ctx.moveTo(x, y - size * 1.5);
+                ctx.lineTo(x + size, y - size * 1.2);
+                ctx.lineTo(x + size, y - size * 0.8);
+                ctx.lineTo(x, y - size);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            function drawX(x, y) {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+
+                const size = 30; // Larger X
+                ctx.lineWidth = 8; // Thicker lines
+                ctx.lineCap = 'round';
+
+                // Draw X
+                ctx.beginPath();
+                ctx.moveTo(x - size, y - size);
+                ctx.lineTo(x + size, y + size);
+                ctx.moveTo(x + size, y - size);
+                ctx.lineTo(x - size, y + size);
+                ctx.stroke();
+            }
+
+            function drawCheck(x, y) {
+                const canvas = document.getElementById('annotationCanvas');
+                const ctx = canvas.getContext('2d');
+
+                const size = 25; // Larger checkmark
+                ctx.lineWidth = 8; // Thicker lines
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+
+                // Draw checkmark
+                ctx.beginPath();
+                ctx.moveTo(x - size, y);
+                ctx.lineTo(x - size / 3, y + size / 2);
+                ctx.lineTo(x + size, y - size / 2);
+                ctx.stroke();
+            }
+
+            function closeScreenshotModal() {
+                document.getElementById('screenshotModal').style.display = 'none';
+                // Show device panel again
+                const devicePanel = document.getElementById('deviceTestPanel');
+                devicePanel.style.display = 'block';
+            }
+
+            async function copyToClipboard() {
+                try {
+                    const screenshotCanvas = document.getElementById('screenshotCanvas');
+                    const annotationCanvas = document.getElementById('annotationCanvas');
+
+                    // Combine canvases
+                    const combinedCanvas = document.createElement('canvas');
+                    combinedCanvas.width = screenshotCanvas.width;
+                    combinedCanvas.height = screenshotCanvas.height;
+                    const ctx = combinedCanvas.getContext('2d');
+
+                    ctx.drawImage(screenshotCanvas, 0, 0);
+                    ctx.drawImage(annotationCanvas, 0, 0);
+
+                    // Convert to blob and copy
+                    combinedCanvas.toBlob(async (blob) => {
+                        const item = new ClipboardItem({ 'image/png': blob });
+                        await navigator.clipboard.write([item]);
+                        alert('Screenshot copied to clipboard!');
+                    });
+                } catch (error) {
+                    console.error('Copy failed:', error);
+                    alert('Copy to clipboard failed. Please use download instead.');
+                }
+            }
+
+            function generateReport() {
+                const notes = document.getElementById('screenshotNotes').value;
+                const info = document.getElementById('screenshotInfo').innerText;
+
+                // Get the combined screenshot with annotations
+                const screenshotCanvas = document.getElementById('screenshotCanvas');
+                const annotationCanvas = document.getElementById('annotationCanvas');
+
+                // Create a combined canvas
+                const combinedCanvas = document.createElement('canvas');
+                combinedCanvas.width = screenshotCanvas.width;
+                combinedCanvas.height = screenshotCanvas.height;
+                const ctx = combinedCanvas.getContext('2d');
+
+                // Draw screenshot and annotations together
+                ctx.drawImage(screenshotCanvas, 0, 0);
+                ctx.drawImage(annotationCanvas, 0, 0);
+
+                // Convert to base64 image
+                const imageDataUrl = combinedCanvas.toDataURL('image/png');
+
+                // Create the markdown report with embedded image
+                const report = `# Slot Machine Debug Report
+
+## Issue Details
+${notes || 'No notes provided'}
+
+## Annotated Screenshot
+![Annotated Screenshot](${imageDataUrl})
+
+## Technical Info
+${info}
+
+## Console Logs
+Check browser console for detailed positioning and scaling information.
+
+## Steps to Reproduce
+1. Open the slot machine application
+2. Use device testing panel to switch to affected device size
+3. Observe the issue described above
+
+## Image Details
+- **Image Format**: PNG
+- **Annotations**: ${annotations.length} annotation(s) applied
+- **Colors Used**: ${[...new Set(annotations.map(a => a.color))].join(', ') || 'None'}
+
+Generated on: ${new Date().toLocaleString()}
+            `.trim();
+
+                const blob = new Blob([report], { type: 'text/markdown' });
+                const link = document.createElement('a');
+                link.download = `slot-machine-debug-report-${Date.now()}.md`;
+                link.href = URL.createObjectURL(blob);
+                link.click();
+
+                console.log('📄 Debug report generated with annotated screenshot embedded');
+            }
+
+            // Test function to check if modal can be opened manually
+            function testModal() {
+                console.log('🧪 Creating screenshot modal...');
+                
+                // Create a simple test canvas
+                const testCanvas = document.createElement('canvas');
+                testCanvas.width = 800;
+                testCanvas.height = 600;
+                const ctx = testCanvas.getContext('2d');
+                
+                // Draw a simple test pattern
+                ctx.fillStyle = '#1E1E1E';
+                ctx.fillRect(0, 0, 800, 600);
+                ctx.fillStyle = '#00ff99';
+                ctx.font = '48px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('SCREENSHOT CAPTURED', 400, 280);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '24px Arial';
+                ctx.fillText('Use annotation tools to mark issues or notes', 400, 330);
+                ctx.font = '16px Arial';
+                ctx.fillStyle = '#ffff00';
+                ctx.fillText('Ready for annotation and export', 400, 370);
+                
+                console.log('✅ Screenshot canvas created');
+                setupScreenshotModal(testCanvas);
+            }
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
