@@ -14,6 +14,15 @@ import "@pixi/sound";
 const engine = new CreationEngine();
 setEngine(engine);
 
+// Global type declarations for debugging functions
+declare global {
+  interface Window {
+    pixiApp: any;
+    captureScreenshot: (filename?: string) => void;
+    logViewportInfo: () => void;
+  }
+}
+
 // Make engine available globally for debugging and screenshot capture
 (window as any).pixiApp = engine;
 
