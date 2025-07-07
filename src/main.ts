@@ -17,17 +17,19 @@ setEngine(engine);
 // Global type declarations for debugging functions
 declare global {
   interface Window {
-    pixiApp: any;
+    pixiApp: CreationEngine;
     captureScreenshot: (filename?: string) => void;
     logViewportInfo: () => void;
   }
 }
 
 // Make engine available globally for debugging and screenshot capture
-(window as any).pixiApp = engine;
+(window as Window).pixiApp = engine;
 
 // Add screenshot capture function that captures full viewport
-(window as any).captureScreenshot = (filename = "slot-machine-screenshot") => {
+(window as Window).captureScreenshot = (
+  filename = "slot-machine-screenshot",
+) => {
   try {
     const canvas = engine.canvas;
     const link = document.createElement("a");
@@ -41,7 +43,7 @@ declare global {
 };
 
 // Add debug function to log viewport info
-(window as any).logViewportInfo = () => {
+(window as Window).logViewportInfo = () => {
   console.log("=== Viewport Information ===");
   console.log("Window dimensions:", window.innerWidth, "x", window.innerHeight);
   console.log(

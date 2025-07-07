@@ -16,36 +16,42 @@ SlotBox SDK is a revolutionary, dynamic SDK for building casino games with unpre
 ## ✨ Key Features
 
 ### 🎨 **Dynamic Game Creation**
+
 - **Plug & Play Architecture**: Start with a fully functioning slot machine that scales dynamically
 - **Drag & Drop Interface**: Intuitive design tools with visual feedback
 - **Personalized Art Integration**: Upload custom artwork, animations, and symbols
 - **Dynamic Scaling**: Responsive design that adapts to any screen size
 
 ### 🎲 **Advanced Game Mechanics**
+
 - **Multiple Mathematical Variants**: Configurable RTP and payout structures
 - **Unique Symbol Systems**: Color-coded squares for static symbols with PNG sequence support
 - **Reel Customization**: Fully customizable reel frames and animations
 - **Scatter & Bonus Features**: Intensive suspense modifiers and bonus triggers
 
 ### 🔧 **Professional Development Tools**
+
 - **Built-in Texture Packer**: Create sprite sheets with JSON and atlas files
 - **FFmpeg Integration**: Convert 10-second videos to sprite sequences
 - **Screenshot & Recording**: Capture gameplay with annotation tools
 - **Real-time Preview**: See changes instantly in the viewport
 
 ### 🎯 **Resolution & Orientation Support**
+
 - **Multi-Resolution Variants**: Extensive resolution options in the selection menu
 - **Size-based Selection**: Choose by specific dimensions
 - **Orientation Support**: Portrait and landscape modes
 - **Responsive Design**: Automatic scaling for all devices
 
 ### 🌐 **Collaboration & AI Features**
+
 - **Networked Connectivity**: Team collaboration tools (coming soon)
 - **Built-in AI Assistant**: Suggestions and problem-solving support
 - **Debugging Help**: AI-powered error detection and solutions
 - **Smart Recommendations**: Intelligent game design suggestions
 
 ### 🔥 **Game State Management**
+
 - **"Burn" Functionality**: Save complete game states like a 90s CD
 - **Export to Stake Engine**: Direct integration with gaming platforms
 - **CSV Math Files**: Comprehensive outcome calculations using Rust/Cargo
@@ -54,11 +60,13 @@ SlotBox SDK is a revolutionary, dynamic SDK for building casino games with unpre
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 - Modern web browser with WebGL support
 
 ### Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/Bengi-Bankz/slotbox-sdk.git
@@ -72,6 +80,7 @@ npm run dev
 ```
 
 ### Quick Start
+
 ```bash
 # Start the development server
 npm start
@@ -86,9 +95,10 @@ npm run lint
 ## 🎮 Usage
 
 ### Basic Setup
+
 ```typescript
-import { CreationEngine } from './src/engine/engine';
-import { SlotMachineScreen } from './src/app/screens/main/SlotMachineScreen';
+import { CreationEngine } from "./src/engine/engine";
+import { SlotMachineScreen } from "./src/app/screens/main/SlotMachineScreen";
 
 // Initialize the engine
 const engine = new CreationEngine();
@@ -97,7 +107,7 @@ await engine.init({
   resizeOptions: {
     minWidth: 280,
     minHeight: 480,
-  }
+  },
 });
 
 // Create your slot machine
@@ -106,31 +116,34 @@ engine.screen.addChild(slotMachine);
 ```
 
 ### Creating Custom Symbols
+
 ```typescript
 // Upload PNG sequences for animated symbols
-const animatedSymbol = await loadPNGSequence('path/to/sequence');
+const animatedSymbol = await loadPNGSequence("path/to/sequence");
 
 // Create static symbols with color coding
 const staticSymbol = new ColorCodedSymbol({
-  color: '#FF6B6B',
-  type: 'cherry'
+  color: "#FF6B6B",
+  type: "cherry",
 });
 ```
 
 ### Mathematical Configuration
+
 ```typescript
 // Configure RTP and payout structures
 const mathConfig = {
   rtp: 96.5,
-  volatility: 'medium',
+  volatility: "medium",
   paylines: 25,
-  bonusFrequency: 1/100
+  bonusFrequency: 1 / 100,
 };
 ```
 
 ## 🏗️ Architecture
 
 ### Core Components
+
 - **Engine**: PixiJS-based rendering engine with custom plugins
 - **Screens**: Modular screen management system
 - **Audio**: Advanced audio management with @pixi/sound
@@ -139,14 +152,16 @@ const mathConfig = {
 - **UI Components**: Reusable UI elements (buttons, labels, sliders)
 
 ### Plugin System
+
 - **AudioPlugin**: Sound management and effects
-- **NavigationPlugin**: Screen routing and transitions  
+- **NavigationPlugin**: Screen routing and transitions
 - **ResizePlugin**: Dynamic viewport handling
 - **Custom Plugins**: Extensible architecture for new features
 
 ## 🎨 Asset Pipeline
 
 ### Supported Formats
+
 - **Images**: PNG, JPEG, WebP, SVG
 - **Audio**: MP3, OGG, WAV
 - **Video**: MP4 (converted to sprite sequences)
@@ -154,25 +169,27 @@ const mathConfig = {
 - **Textures**: Custom sprite sheets with JSON atlases
 
 ### Asset Processing
+
 ```typescript
 // Automatic sprite sheet generation
 const spriteSheet = await createSpriteSheet({
-  images: ['symbol1.png', 'symbol2.png'],
-  output: 'symbols.json',
-  algorithm: 'maxrects'
+  images: ["symbol1.png", "symbol2.png"],
+  output: "symbols.json",
+  algorithm: "maxrects",
 });
 
 // FFmpeg video conversion
 const sequence = await convertVideoToSprites({
-  input: 'bonus_animation.mp4',
+  input: "bonus_animation.mp4",
   duration: 10,
-  fps: 24
+  fps: 24,
 });
 ```
 
 ## 🔧 Configuration
 
 ### Game Settings
+
 ```json
 {
   "game": {
@@ -197,36 +214,36 @@ const sequence = await convertVideoToSprites({
 ```
 
 ### Build Configuration
+
 ```javascript
 // vite.config.ts
 export default defineConfig({
   plugins: [
     assetpack({
-      pipes: [
-        texturePacker(),
-        webp(),
-        compress()
-      ]
-    })
-  ]
+      pipes: [texturePacker(), webp(), compress()],
+    }),
+  ],
 });
 ```
 
 ## 🌟 Advanced Features
 
 ### AI Integration
+
 - **Smart Symbol Placement**: AI-suggested optimal symbol positioning
 - **RTP Optimization**: Automatic mathematical balancing
 - **Bug Detection**: AI-powered debugging assistance
 - **Performance Optimization**: Intelligent resource management
 
 ### Collaboration Tools
+
 - **Real-time Editing**: Multiple developers working simultaneously
 - **Version Control**: Built-in asset versioning
 - **Comment System**: Annotate designs and code
 - **Review Process**: Streamlined approval workflows
 
 ### Export Options
+
 - **Stake Engine**: Direct deployment to gaming platforms
 - **HTML5 Export**: Standalone web games
 - **Mobile Apps**: Export for iOS/Android
@@ -235,17 +252,20 @@ export default defineConfig({
 ## 📱 Platform Support
 
 ### Web Browsers
+
 - Chrome 90+
 - Firefox 88+
 - Safari 14+
 - Edge 90+
 
 ### Mobile Devices
+
 - iOS 14+
 - Android 8+
 - Responsive design for all screen sizes
 
 ### Desktop
+
 - Windows 10+
 - macOS 10.15+
 - Linux (Ubuntu 20.04+)
@@ -253,6 +273,7 @@ export default defineConfig({
 ## 💰 Pricing & Commercial Use
 
 ### 🆓 **Community Edition (Free)**
+
 - Basic slot machine functionality
 - Up to 3 reels, 3 rows
 - Standard symbols and animations
@@ -260,6 +281,7 @@ export default defineConfig({
 - Community support
 
 ### 🚀 **Professional Edition ($29/month)**
+
 - Unlimited reels and rows
 - Custom symbol upload
 - Advanced animations and effects
@@ -268,6 +290,7 @@ export default defineConfig({
 - Commercial license included
 
 ### 🏢 **Enterprise Edition ($99/month)**
+
 - Everything in Professional
 - AI-powered suggestions
 - Stake Engine integration
@@ -279,21 +302,25 @@ export default defineConfig({
 ### 📊 **Revenue Share Tiers**
 
 #### 🌟 **Starter Games** (First $1,000/month)
+
 - **SlotBox Share**: 15%
 - **Developer Share**: 85%
 - **Benefits**: Standard support, basic analytics
 
 #### 🚀 **Growing Games** ($1,000 - $10,000/month)
+
 - **SlotBox Share**: 10%
 - **Developer Share**: 90%
 - **Benefits**: Priority support, advanced analytics, marketing assistance
 
 #### 💎 **Successful Games** ($10,000+/month)
+
 - **SlotBox Share**: 7%
 - **Developer Share**: 93%
 - **Benefits**: Dedicated account manager, custom features, co-marketing
 
 #### 🏆 **Enterprise Partners** (Custom)
+
 - **SlotBox Share**: 5% (negotiable)
 - **Developer Share**: 95%
 - **Benefits**: White-label options, custom development, direct partnership
@@ -301,6 +328,7 @@ export default defineConfig({
 > **The more successful your games become, the less we take. We're invested in your long-term success!** 💪
 
 ### 💎 **Revenue Share Program**
+
 - **Free to Use** - No upfront costs
 - **We Take 10%** - Only when your game makes money
 - **Built-in Analytics** - Real-time revenue tracking
@@ -311,6 +339,7 @@ export default defineConfig({
 > **Why Revenue Share?** We succeed when you succeed. Build amazing games, we handle the tech and take a small cut of the profits. It's a win-win! 🚀
 
 ### 🎯 **Custom Development**
+
 - Bespoke game creation: $500-2000
 - Integration services: $200-500
 - Training and consulting: $100/hour
@@ -322,6 +351,7 @@ export default defineConfig({
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ### Development Setup
+
 ```bash
 # Fork the repository
 git fork https://github.com/Bengi-Bankz/slotbox-sdk.git
@@ -347,24 +377,28 @@ git push origin feature/amazing-new-feature
 ## 🎯 Roadmap
 
 ### Phase 1 (Current)
+
 - ✅ Core engine with PixiJS 9
 - ✅ Basic slot machine functionality
 - ✅ Asset pipeline
 - ✅ Responsive design
 
 ### Phase 2 (Q3 2025)
+
 - 🔄 AI integration for suggestions
 - 🔄 Advanced collaboration tools
 - 🔄 FFmpeg video processing
 - 🔄 Enhanced debugging tools
 
 ### Phase 3 (Q4 2025)
+
 - 📋 Network multiplayer support
 - 📋 Advanced mathematical modeling
 - 📋 Performance analytics
 - 📋 Mobile app exports
 
 ### Phase 4 (2026)
+
 - 📋 VR/AR support
 - 📋 Blockchain integration
 - 📋 Advanced AI game generation
@@ -372,9 +406,9 @@ git push origin feature/amazing-new-feature
 
 ## 🏆 Success Stories
 
-> "SlotBox SDK transformed our game development process. We went from months to weeks in creating engaging slot experiences." - *Gaming Studio XYZ*
+> "SlotBox SDK transformed our game development process. We went from months to weeks in creating engaging slot experiences." - _Gaming Studio XYZ_
 
-> "The drag-and-drop interface made it possible for our artists to directly contribute to game mechanics without coding knowledge." - *Creative Director, ABC Games*
+> "The drag-and-drop interface made it possible for our artists to directly contribute to game mechanics without coding knowledge." - _Creative Director, ABC Games_
 
 ## 📄 License
 
@@ -404,20 +438,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🤝 **Strategic Partnerships**
 
 ### 🎰 **Stake Engine Partnership**
+
 SlotBox SDK is designed to work seamlessly with Stake's gaming platform through our revolutionary **three-way revenue sharing model**:
 
 #### **How It Works:**
+
 1. **Developers** create games using SlotBox SDK (free)
 2. **SlotBox** provides tools, support, and quality assurance
 3. **Stake** hosts and operates the games on their platform
 4. **Revenue flows** to all three parties based on game performance
 
 #### **Revenue Distribution:**
+
 - **Developer**: 85-93% (based on performance tiers)
 - **SlotBox**: 5-15% (decreasing as games grow)
 - **Stake**: Standard platform fees (negotiated separately)
 
 #### **Benefits for Stake:**
+
 - **Curated Content**: Pre-tested, high-quality games
 - **Reduced Development Costs**: No upfront payments to developers
 - **Innovation Pipeline**: Access to cutting-edge game mechanics
@@ -425,6 +463,7 @@ SlotBox SDK is designed to work seamlessly with Stake's gaming platform through 
 - **Market Expansion**: Unique games attract new players
 
 #### **Quality Assurance:**
+
 - **Technical Standards**: All games tested for performance and compatibility
 - **Mathematical Validation**: RTP and volatility verified using Rust/Cargo
 - **Regulatory Compliance**: Games built to meet licensing requirements
@@ -437,18 +476,21 @@ SlotBox SDK is designed to work seamlessly with Stake's gaming platform through 
 While our primary focus is Stake integration, SlotBox SDK supports multiple deployment targets:
 
 #### **Gaming Platforms:**
+
 - **Stake**: Primary partner with deep integration
 - **Roobet**: Secondary target for game deployment
 - **DraftKings**: Exploring sports betting integration
 - **FanDuel**: Potential casino game partnership
 
 #### **Independent Deployments:**
+
 - **White-label Casinos**: Direct B2B sales
 - **Mobile Apps**: iOS/Android game exports
 - **Web Platforms**: Standalone casino websites
 - **Blockchain Gaming**: Crypto-powered slot games
 
 #### **Revenue Optimization:**
+
 - **A/B Testing**: Built-in game performance optimization
 - **Player Analytics**: Deep insights into player behavior
 - **Dynamic RTP**: Adjust payout rates based on performance
